@@ -9,11 +9,21 @@ use Symfony\Component\Routing\Annotation\Route;
 class ClientController extends AbstractController
 {
     /**
-     * @Route("/client", name="client")
+     * @Route("/", name="home")
      */
     public function index(): Response
     {
         return $this->render('client/index.html.twig', [
+            'controller_name' => 'ClientController',
+        ]);
+    }
+
+    /**
+     * @Route("/product", name="product")
+     */
+    public function product(): Response
+    {
+        return $this->render('client/product.html.twig', [
             'controller_name' => 'ClientController',
         ]);
     }
