@@ -131,4 +131,5 @@ class Shop
 
         return $this;
     }
+
 }

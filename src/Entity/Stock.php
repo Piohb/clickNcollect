@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\StockRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -20,17 +18,8 @@ class Stock
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $stock;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $price;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Product::class, mappedBy="stock")
+     * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="stocks")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $product;
 
@@ -40,55 +29,29 @@ class Stock
      */
     private $shop;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $price;
 
-    public function __construct()
-    {
-        $this->product = new ArrayCollection();
-    }
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $stock;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getStock(): ?int
-    {
-        return $this->stock;
-    }
-
-    public function setStock(int $stock): self
-    {
-        $this->stock = $stock;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Product[]
-     */
-    public function getProduct(): Collection
+    public function getProduct(): ?Product
     {
         return $this->product;
     }
 
-    public function addProduct(Product $product): self
+    public function setProduct(?Product $product): self
     {
-        if (!$this->product->contains($product)) {
-            $this->product[] = $product;
-            $product->setStock($this);
-        }
-
-        return $this;
-    }
-
-    public function removeProduct(Product $product): self
-    {
-        if ($this->product->removeElement($product)) {
-            // set the owning side to null (unless already changed)
-            if ($product->getStock() === $this) {
-                $product->setStock(null);
-            }
-        }
+        $this->product = $product;
 
         return $this;
     }
@@ -113,6 +76,18 @@ class Stock
     public function setPrice(int $price): self
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function getStock(): ?int
+    {
+        return $this->stock;
+    }
+
+    public function setStock(int $stock): self
+    {
+        $this->stock = $stock;
 
         return $this;
     }
