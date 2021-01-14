@@ -15,6 +15,7 @@ class ClientController extends AbstractController
     {
         return $this->render('client/index.html.twig', [
             'controller_name' => 'ClientController',
+            'banner' => true
         ]);
     }
 
@@ -25,6 +26,7 @@ class ClientController extends AbstractController
     {
         return $this->render('client/product.html.twig', [
             'controller_name' => 'ClientController',
+            'banner' => false
         ]);
     }
 }
