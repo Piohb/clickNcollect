@@ -1,0 +1,219 @@
+@keyframes Opa {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes DeOpa {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+
+@keyframes Anim {
+  from {
+    right: 100%;
+
+  }
+  to {
+    right: 0;
+
+  }
+}
+
+@keyframes DeAnim {
+  from {
+
+    left: 0;
+  }
+  to {
+
+    left: 100%;
+  }
+}
+
+.text {
+
+  padding: 0;
+
+  /*@include tactile {
+    padding-top: 25px;
+  }*/
+
+  .container {
+    height: calc(100vh - 60px);
+    border: 1px solid #d9d9d9;
+    border-left: 0;
+    border-right: 0;
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /*@include tactile{
+      height: 80vh;
+      margin: calc(10vh - 60px) 0;
+    }
+
+    @include tablette{
+      flex-wrap: wrap;
+      height: 200vh;
+    }*/
+
+    .left-content, .right-content {
+      position: relative;
+      height: 100%;
+      width: 50%;
+      margin: auto;
+      box-sizing: border-box;
+
+      /*@include tablette{
+        height: 50%;
+        width: 100%;
+      }*/
+
+      .content {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        background-color: white;
+        box-sizing: border-box;
+        flex-direction: column;
+
+      }
+
+      .content-left {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+
+      }
+
+      .content-right {
+        padding: 50px;
+
+
+        h3 {
+          width: 100%;
+          font-size: 3em;
+          margin-bottom: 50px;
+        }
+
+        p {
+          width: 100%;
+          font-size: 1em;
+          line-height: 150%;
+          text-align: justify;
+          white-space: pre-wrap;
+          overflow: scroll;
+
+          &::-webkit-scrollbar-thumb {
+            background-color: white;
+          }
+        }
+      }
+    }
+
+    .button {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      height: 50px;
+      padding: 10px;
+      justify-content: space-between;
+
+      button {
+        background-color: transparent;
+        border: none;
+        width: 82px;
+        height: 43px;
+        margin: 10px;
+        position: relative;
+      }
+
+      #prev {
+        background: url("../icon/arrow_left.svg") no-repeat;
+        background-size: 81px 45px;
+        transform: none!important;
+
+        &:before {
+          content: "";
+          position: absolute;
+          transition: width .3s;
+          width: 0;
+          height: 3px;
+          display: inline-block;
+          right: 0;
+          top: 21px;
+          background-color: white;
+          opacity: 1;
+        }
+
+        &:hover {
+          &:before {
+            width: 25px;
+          }
+        }
+      }
+
+      #next {
+        background: url("../icon/arrow_right.svg") no-repeat;
+        background-size: 81px 45px;
+        transform: none!important;
+
+        &:before {
+          content: "";
+          position: absolute;
+          transition: width .3s;
+          width: 0;
+          height: 3px;
+          display: inline-block;
+          left: 0;
+          top: 21px;
+          background-color: white;
+          opacity: 1;
+        }
+
+        &:hover {
+          &:before {
+            width: 25px;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.container .content-left {
+  height: 100%;
+  left: 100%;
+  animation: DeAnim 1s 1;
+}
+
+.container .content-left.active {
+  left: 0;
+  animation: Anim 1s 1;
+  z-index: 5;
+}
+
+.container .content-right {
+  height: 100%;
+  transform: scaleX(0);
+  animation: DeOpa 1s 1;
+}
+
+.container .content-right.active {
+  transform: scaleX(1);
+  animation: Opa 1s 1;
+}
