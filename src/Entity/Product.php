@@ -28,14 +28,16 @@ class Product
     private $description;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="products")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $stock;
+    private $category;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity=Stock::class, inversedBy="product")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $price;
+    private $stock;
 
     public function getId(): ?int
     {
@@ -66,26 +68,26 @@ class Product
         return $this;
     }
 
-    public function getStock(): ?int
+    public function getCategory(): ?Category
     {
-        return $this->stock;
+        return $this->category;
     }
 
-    public function setStock(int $stock): self
+    public function setCategory(?Category $category): self
     {
-        $this->stock = $stock;
+        $this->category = $category;
 
         return $this;
     }
 
-    public function getPrice(): ?int
+    public function getStock(): ?Stock
     {
-        return $this->price;
+        return $this->stock;
     }
 
-    public function setPrice(int $price): self
+    public function setStock(?Stock $stock): self
     {
-        $this->price = $price;
+        $this->stock = $stock;
 
         return $this;
     }
