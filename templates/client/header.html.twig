@@ -117,17 +117,12 @@
                         <span>Nos Magasins</span>
                     </div>
                     <ul>
-                        <li><a href="#">Fresh Meat</a></li>
-                        <li><a href="#">Vegetables</a></li>
-                        <li><a href="#">Fruit & Nut Gifts</a></li>
-                        <li><a href="#">Fresh Berries</a></li>
-                        <li><a href="#">Ocean Foods</a></li>
-                        <li><a href="#">Butter & Eggs</a></li>
-                        <li><a href="#">Fastfood</a></li>
-                        <li><a href="#">Fresh Onion</a></li>
-                        <li><a href="#">Papayaya & Crisps</a></li>
-                        <li><a href="#">Oatmeal</a></li>
-                        <li><a href="#">Fresh Bananas</a></li>
+                        <li><a href="{{ path('shop') }}">Magasin 1</a></li>
+                        <li><a href="{{ path('shop') }}">Magasin 2</a></li>
+                        <li><a href="{{ path('shop') }}">Magasin 3</a></li>
+                        <li><a href="{{ path('shop') }}">Magasin 4</a></li>
+                        <li><a href="{{ path('shop') }}">Magasin 5</a></li>
+                        <li><a href="{{ path('shop') }}">Magasin 6</a></li>
                     </ul>
                 </div>
             </div>
@@ -145,7 +140,7 @@
                     </div>
                 </div>
 
-                {% if banner %}
+                {% if home %}
                     <div class="hero__item set-bg" data-setbg="{{ asset('client/img/hero/banner.jpg') }}">
                         <div class="hero__text">
                             <span>FRUIT FRESH</span>
@@ -155,9 +150,30 @@
                         </div>
                     </div>
                 {% endif %}
-                
+
             </div>
         </div>
     </div>
 </section>
 <!-- Hero Section End -->
+
+{% if banner %}
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-section set-bg" data-setbg="{{ asset('client/img/breadcrumb.jpg') }}">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>{% block h2 %}Welcome{% endblock %}</h2>
+                    <div class="breadcrumb__option">
+                        <a href="./index.html">Home</a>
+                        <a href="./index.html">Vegetables</a>
+                        <span>Vegetable’s Package</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+{% endif %}

@@ -21,7 +21,11 @@
         {% endblock %}
     </head>
     <body>
-        {% include 'client/header.html.twig' %}
+       {% embed 'client/header.html.twig' %}
+            {% block h2 %}
+              {{ h2 }}
+            {% endblock %}
+        {% endembed %}
 
         {% block body %}{% endblock %}
 

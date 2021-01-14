@@ -14,8 +14,35 @@ class ClientController extends AbstractController
     public function index(): Response
     {
         return $this->render('client/index.html.twig', [
-            'controller_name' => 'ClientController',
-            'banner' => true
+            'controller_name' => 'IndexController',
+            'home' => true,
+            'banner' => false
+        ]);
+    }
+
+    /**
+     * @Route("/shop", name="shop")
+     */
+    public function shop(): Response
+    {
+        return $this->render('client/shop.html.twig', [
+            'controller_name' => 'ShopController',
+            'home' => false,
+            'banner' => true,
+            'h2' => 'Shop'
+        ]);
+    }
+
+    /**
+     * @Route("/product-search", name="product-search")
+     */
+    public function productSearch(): Response
+    {
+        return $this->render('client/product-search.html.twig', [
+            'controller_name' => 'ProductSearchController',
+            'home' => false,
+            'banner' => true,
+            'h2' => 'Product Search'
         ]);
     }
 
@@ -25,8 +52,10 @@ class ClientController extends AbstractController
     public function product(): Response
     {
         return $this->render('client/product.html.twig', [
-            'controller_name' => 'ClientController',
-            'banner' => false
+            'controller_name' => 'ProductController',
+            'home' => false,
+            'banner' => true,
+            'h2' => 'Product'
         ]);
     }
 
@@ -36,8 +65,10 @@ class ClientController extends AbstractController
     public function cart(): Response
     {
         return $this->render('client/cart.html.twig', [
-            'controller_name' => 'ClientController',
-            'banner' => false
+            'controller_name' => 'CartController',
+            'home' => false,
+            'banner' => true,
+            'h2' => 'Shopping Cart'
         ]);
     }
 }
