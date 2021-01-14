@@ -1,0 +1,16 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}New Category{% endblock %}
+
+{% block body %}
+
+    {% embed 'admin/title.html.twig' %}
+        {% block sectiontitle %}
+            <h2 class="mt-4">Create new Category</h2>
+            <a href="{{ path('category_index') }}" class="btn btn-secondary">back to list</a>
+        {% endblock %}
+    {% endembed %}
+
+    {{ include('admin/category/_form.html.twig') }}
+
+{% endblock %}

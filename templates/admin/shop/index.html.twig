@@ -1,0 +1,52 @@
+{% extends 'base_admin.html.twig' %}
+
+
+{% block title %}Shop index{% endblock %}
+
+{% block body %}
+
+    {% embed 'admin/title.html.twig' %}
+        {% block sectiontitle %}
+            <h2 class="mt-4">Shop index</h2>
+            <a href="{{ path('shop_new') }}" class="btn btn-primary">Create new</a>
+        {% endblock %}
+    {% endembed %}
+
+    {% embed 'admin/table.html.twig' %}
+
+        {% block table %}
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>Postcode</th>
+                <th>actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for shop in shops %}
+                <tr>
+                    <td>{{ shop.id }}</td>
+                    <td>{{ shop.name }}</td>
+                    <td>{{ shop.address }}</td>
+                    <td>{{ shop.city }}</td>
+                    <td>{{ shop.postcode }}</td>
+                    <td>
+                        <a href="{{ path('shop_show', {'id': shop.id}) }}">show</a>
+                        <a href="{{ path('shop_edit', {'id': shop.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        {% endblock %}
+
+    {% endembed %}
+
+{% endblock %}
+

@@ -16,9 +16,129 @@
             <link rel="stylesheet" href="{{ asset('admin/css/main.css') }}">
             <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         {% endblock %}
+
+        <!-- JS LINK -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                const leftElem = $(".left-content").children();
+                const rightElem = $(".right-content").children();
+
+                let leftActive = -1;
+                leftElem.each(function(index) {
+                    if ($(this).hasClass("active")) {
+                        leftActive = index;
+                    }
+                });
+                let rightActive = -1;
+                rightElem.each(function(index) {
+                    if ($(this).hasClass("active")) {
+                        rightActive = index;
+                    }
+                });
+
+                const btnNext = $("#next");
+                const btnPrev = $("#prev");
+
+                function clickNext() {
+                    /*$(".left-content > .content ").css("transform-origin", "top center");
+                    $(".left-content > .content.active ").css(
+                        "transform-origin",
+                        "bottom center"
+                    );
+                    $(".right-content > .content ").css("transform-origin", "bottom center");
+                    $(".right-content > .content.active ").css(
+                        "transform-origin",
+                        "top center"
+                    );*/
+                    const tempElemL = leftElem.toArray();
+                    const tempElemR = rightElem.toArray();
+                    tempElemL[leftActive].classList.remove("active");
+                    tempElemR[rightActive].classList.remove("active");
+                    leftActive = leftActive + 1 >= tempElemL.length ? 0 : leftActive + 1;
+                    rightActive = rightActive + 1 >= tempElemR.length ? 0 : rightActive + 1;
+                    tempElemL[leftActive].classList.add("active");
+                    tempElemR[rightActive].classList.add("active");
+                }
+                function clickPrev() {
+                    /*$(".left-content > .content ").css("transform-origin", "bottom center");
+                    $(".left-content > .content.active ").css("transform-origin", "top center");
+                    $(".right-content > .content ").css("transform-origin", "top center");
+                    $(".right-content > .content.active ").css(
+                        "transform-origin",
+                        "bottom center"
+                    );*/
+                    const tempElemL = leftElem.toArray();
+                    const tempElemR = rightElem.toArray();
+                    tempElemL[leftActive].classList.remove("active");
+                    tempElemR[rightActive].classList.remove("active");
+                    leftActive = leftActive - 1 < 0 ? tempElemL.length - 1 : leftActive - 1;
+                    rightActive = rightActive - 1 < 0 ? tempElemR.length - 1 : rightActive - 1;
+                    tempElemL[leftActive].classList.add("active");
+                    tempElemR[rightActive].classList.add("active");
+                }
+
+                btnNext.click(function() {
+                    clickNext();
+
+                });
+                btnPrev.click(function() {
+                    clickPrev();
+
+                });
+            });
+        </script>
     </head>
     <body>
+
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            <a class="navbar-brand" href="">
+                vers le SITE WEB
+            </a>
+            <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle"><i class="fas fa-bars"></i></button>
+        </nav>
+
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+
+                            <div class="sb-sidenav-menu-heading">Core</div>
+
+                            <a class="nav-link" href="{{ path('admin') }}">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-grip-vertical"></i>
+                                </div>
+                                MENU
+                            </a>
+
+                            <div class="sb-sidenav-menu-heading">Interface</div>
+
+                            <a class="nav-link" href="">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-table"></i>
+                                </div>
+                                SERVICES
+                            </a>
+                        </div>
+                    </div>
+
+                </nav>
+            </div>
+
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid">
+
         {% block body %}{% endblock %}
+
+                    </div>
+                </main>
+            </div>
+        </div>
+
         {% block javascripts %}
             <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
