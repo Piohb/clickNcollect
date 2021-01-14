@@ -29,4 +29,15 @@ class ClientController extends AbstractController
             'banner' => false
         ]);
     }
+
+    /**
+     * @Route("/cart", name="cart")
+     */
+    public function cart(): Response
+    {
+        return $this->render('client/cart.html.twig', [
+            'controller_name' => 'ClientController',
+            'banner' => false
+        ]);
+    }
 }
