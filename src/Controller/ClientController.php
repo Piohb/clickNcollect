@@ -74,4 +74,16 @@ class ClientController extends AbstractController
             'h2' => 'Shopping Cart'
         ]);
     }
+
+    /**
+     * @Route("/contact", name="contact")
+     */
+    public function contact(): Response
+    {
+        return $this->render('client/contact.html.twig', [
+            'controller_name' => 'ContactController',
+            'home' => false,
+            'banner' => true,
+        ]);
+    }
 }
