@@ -27,13 +27,17 @@ class ClientController extends AbstractController
     /**
      * @Route("/shop/{id}", name="shop")
      */
-    public function shop($id, ShopRepository $shopRepository, ProductRepository $productRepository): Response
+    public function shop($id, ShopRepository $shopRepository, StockRepository $stockRepository): Response
     {
         $shop = $shopRepository->find($id);
-        //$products = $productRepository->findBy()
+        $stocks = $stockRepository->findBy(
+          ['shop' => $id]
+        );
 
+        //dump($stocks);
         return $this->render('client/shop.html.twig', [
-            'shop' => $shop
+            'shop' => $shop,
+            'stocks' => $stocks
         ]);
     }
 
@@ -42,12 +46,7 @@ class ClientController extends AbstractController
      */
     public function productSearch(): Response
     {
-        return $this->render('client/product-search.html.twig', [
-            'controller_name' => 'ProductSearchController',
-            'home' => false,
-            'banner' => true,
-            'h2' => 'Product Search'
-        ]);
+        return $this->render('client/product-search.html.twig');
     }
 
     /**
@@ -60,7 +59,7 @@ class ClientController extends AbstractController
             ['product' => $id]
         );
 
-        dump($stock);
+        //dump($stock);
         return $this->render('client/product.html.twig', [
             'product' => $product,
             'stock' => $stock
@@ -72,12 +71,7 @@ class ClientController extends AbstractController
      */
     public function cart(): Response
     {
-        return $this->render('client/cart.html.twig', [
-            'controller_name' => 'CartController',
-            'home' => false,
-            'banner' => true,
-            'h2' => 'Shopping Cart'
-        ]);
+        return $this->render('client/cart.html.twig');
     }
 
     /**

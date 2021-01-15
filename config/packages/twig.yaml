@@ -5,3 +5,4 @@ twig:
     globals:
       categoryrepo: '@App\Repository\CategoryRepository'
       shoprepo: '@App\Repository\ShopRepository'
+      productrepo: '@App\Repository\ProductRepository'
