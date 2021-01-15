@@ -1,15 +1,25 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
 {% block title %}Stock{% endblock %}
 
 {% block body %}
-    <h1>Stock</h1>
+
+    {% embed 'admin/title.html.twig' %}
+        {% block sectiontitle %}
+            <h2 class="mt-4">Stock Item</h2>
+            <a href="{{ path('stock_index') }}" class="btn btn-secondary">back to list</a>
+        {% endblock %}
+    {% endembed %}
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ stock.id }}</td>
+                <th>Shop</th>
+                <td><a href="{{ path('shop_show', {id: stock.shop.id}) }}">{{ stock.shop.name }}</a></td>
+            </tr>
+            <tr>
+                <th>Product</th>
+                <td><a href="{{ path('product_show', {id: stock.product.id}) }}">{{ stock.product.name }}</a></td>
             </tr>
             <tr>
                 <th>Price</th>
@@ -22,9 +32,10 @@
         </tbody>
     </table>
 
-    <a href="{{ path('stock_index') }}">back to list</a>
+    <div class="d-flex align-items-center">
+        <a href="{{ path('stock_edit', {'id': stock.id}) }}" class="btn btn-success mr-2">edit</a>
 
-    <a href="{{ path('stock_edit', {'id': stock.id}) }}">edit</a>
+        {{ include('admin/stock/_delete_form.html.twig') }}
+    </div>
 
-    {{ include('stock/_delete_form.html.twig') }}
 {% endblock %}
