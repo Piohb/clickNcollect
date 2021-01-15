@@ -321,21 +321,36 @@
                 <div class="row">
 
                     {% for stock in stocks %}
+<<<<<<< HEAD
 
                     <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="product__item">
                             <div class="product__item__pic set-bg" data-setbg="{{ asset('client/img/product/product-2.jpg') }}">
                                 <ul class="product__item__pic__hover">
                                     <li><a href="{{ path('cart') }}"><i class="fa fa-shopping-cart"></i></a></li>
+=======
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="product__item">
+                            <div class="product__item__pic set-bg" data-setbg="{{ asset('client/img/product/product-1.jpg') }}">
+                                <ul class="product__item__pic__hover">
+                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+>>>>>>> 6b24d94675d899982de96e803e554f3605222cd1
                                 </ul>
                             </div>
                             <div class="product__item__text">
                                 <h6><a href="{{ path('product', {id: stock.product.id}) }}">{{ stock.product.name }}</a></h6>
+<<<<<<< HEAD
                                 <h5>{{ stock.price }}.00€</h5>
                             </div>
                         </div>
                     </div>
 
+=======
+                                <h5>{{ stock.price }}</h5>
+                            </div>
+                        </div>
+                    </div>
+>>>>>>> 6b24d94675d899982de96e803e554f3605222cd1
                     {% endfor %}
 
                 </div>

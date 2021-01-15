@@ -38,7 +38,11 @@
                         <i class="fa fa-star-half-o"></i>
                         <span>(18 reviews)</span>
                     </div>
+<<<<<<< HEAD
                     <div class="product__details__price">{{ stock.price }}</div>
+=======
+                    <div class="product__details__price">${{ stock.price }}</div>
+>>>>>>> 6b24d94675d899982de96e803e554f3605222cd1
                     <p>{{ product.description }}</p>
                     <div class="product__details__quantity">
                         <div class="quantity">
@@ -50,12 +54,17 @@
                     <a href="{{ path('cart')}}" class="primary-btn">ADD TO CARD</a>
                     <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                     <ul>
-                        <li>
+                        <li class="d-flex">
                             <b>Shop</b>
                             <span>
-                                <select name="shop" id="selectshop">
-                                    <option value=""></option>
+                                <div>
+                                   <select name="shop" id="selectshop">
+
+                                       {% for shop in shops %}
+                                           <option value="{{ shop.id }}">{{ shop.name }}</option>
+                                       {% endfor %}
                                 </select>
+                                </div>
                             </span>
                         </li>
                         <li><b>Availability</b> <span>In Stock - {{ stock.stock }}</span></li>

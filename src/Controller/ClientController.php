@@ -27,7 +27,11 @@ class ClientController extends AbstractController
     /**
      * @Route("/shop/{id}", name="shop")
      */
+<<<<<<< HEAD
     public function shop($id, ShopRepository $shopRepository, StockRepository $stockRepository, ProductRepository $productRepository): Response
+=======
+    public function shop($id, ShopRepository $shopRepository, StockRepository $stockRepository): Response
+>>>>>>> 6b24d94675d899982de96e803e554f3605222cd1
     {
         $shop = $shopRepository->find($id);
         $stocks = $stockRepository->findBy(
@@ -46,12 +50,7 @@ class ClientController extends AbstractController
      */
     public function productSearch(): Response
     {
-        return $this->render('client/product-search.html.twig', [
-            'controller_name' => 'ProductSearchController',
-            'home' => false,
-            'banner' => true,
-            'h2' => 'Product Search'
-        ]);
+        return $this->render('client/product-search.html.twig');
     }
 
     /**
@@ -60,11 +59,18 @@ class ClientController extends AbstractController
     public function product($id, ProductRepository $productRepository, StockRepository $stockRepository): Response
     {
         $product = $productRepository->find($id);
+        $stock = $stockRepository->findOneBy(
+            ['product' => $id]
+        );
 
+<<<<<<< HEAD
         $stock = $stockRepository->findOneBy(
           ['product' => $id]
         );
  dump($stock, $product);
+=======
+        //dump($stock);
+>>>>>>> 6b24d94675d899982de96e803e554f3605222cd1
         return $this->render('client/product.html.twig', [
             'product' => $product,
             'stock' => $stock
@@ -76,12 +82,7 @@ class ClientController extends AbstractController
      */
     public function cart(): Response
     {
-        return $this->render('client/cart.html.twig', [
-            'controller_name' => 'CartController',
-            'home' => false,
-            'banner' => true,
-            'h2' => 'Shopping Cart'
-        ]);
+        return $this->render('client/cart.html.twig');
     }
 
     /**
