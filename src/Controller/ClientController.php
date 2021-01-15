@@ -53,12 +53,17 @@ class ClientController extends AbstractController
     /**
      * @Route("/product/{id}", name="product")
      */
-    public function product($id, ProductRepository $productRepository): Response
+    public function product($id, ProductRepository $productRepository, StockRepository $stockRepository): Response
     {
         $product = $productRepository->find($id);
+        $stock = $stockRepository->findOneBy(
+            ['product' => $id]
+        );
 
+        dump($stock);
         return $this->render('client/product.html.twig', [
-            'product' => $product
+            'product' => $product,
+            'stock' => $stock
         ]);
     }
 
