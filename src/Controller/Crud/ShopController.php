@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/shop")
+ * @Route("/admin/shop")
  */
 class ShopController extends AbstractController
 {
@@ -20,7 +20,7 @@ class ShopController extends AbstractController
      */
     public function index(ShopRepository $shopRepository): Response
     {
-        return $this->render('shop/index.html.twig', [
+        return $this->render('admin/shop/index.html.twig', [
             'shops' => $shopRepository->findAll(),
         ]);
     }
@@ -42,7 +42,7 @@ class ShopController extends AbstractController
             return $this->redirectToRoute('shop_index');
         }
 
-        return $this->render('shop/new.html.twig', [
+        return $this->render('admin/shop/new.html.twig', [
             'shop' => $shop,
             'form' => $form->createView(),
         ]);
@@ -53,7 +53,7 @@ class ShopController extends AbstractController
      */
     public function show(Shop $shop): Response
     {
-        return $this->render('shop/show.html.twig', [
+        return $this->render('admin/shop/show.html.twig', [
             'shop' => $shop,
         ]);
     }
@@ -72,7 +72,7 @@ class ShopController extends AbstractController
             return $this->redirectToRoute('shop_index');
         }
 
-        return $this->render('shop/edit.html.twig', [
+        return $this->render('admin/shop/edit.html.twig', [
             'shop' => $shop,
             'form' => $form->createView(),
         ]);
