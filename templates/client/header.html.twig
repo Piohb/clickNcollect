@@ -105,7 +105,9 @@
                     </ul>
                     <div class="header__cart__price">
                         {% if app.user %}
-                            <a href="{{ path('app_logout') }}"><i class="fa fa-user-times" style="color:black"></i></a>
+                            <a href="{{ path('app_logout') }}"><i class="fa fa-user-times" style="color:black;font-size: larger"></i></a>
+                        {% else %}
+                            <a href="{{ path('app_login') }}"><i class="fa fa-user" style="color:black;font-size: larger"></i></a>
                         {% endif %}
                     </div>
                 </div>

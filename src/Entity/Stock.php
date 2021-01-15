@@ -39,6 +39,11 @@ class Stock
      */
     private $stock;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $sales;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -88,6 +93,18 @@ class Stock
     public function setStock(int $stock): self
     {
         $this->stock = $stock;
+
+        return $this;
+    }
+
+    public function getSales(): ?bool
+    {
+        return $this->sales;
+    }
+
+    public function setSales(bool $sales): self
+    {
+        $this->sales = $sales;
 
         return $this;
     }

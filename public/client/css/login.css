@@ -58,3 +58,7 @@ body {
     width: 50%;
     margin: 15px auto;
 }
+
+.loginlink:hover{
+    color: black;
+}

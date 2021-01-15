@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Repository\ShopRepository;
+use App\Repository\StockRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,15 +25,15 @@ class ClientController extends AbstractController
     }
 
     /**
-     * @Route("/shop", name="shop")
+     * @Route("/shop/{id}", name="shop")
      */
-    public function shop(): Response
+    public function shop($id, ShopRepository $shopRepository, ProductRepository $productRepository): Response
     {
+        $shop = $shopRepository->find($id);
+        //$products = $productRepository->findBy()
+
         return $this->render('client/shop.html.twig', [
-            'controller_name' => 'ShopController',
-            'home' => false,
-            'banner' => true,
-            'h2' => 'Shop'
+            'shop' => $shop
         ]);
     }
 

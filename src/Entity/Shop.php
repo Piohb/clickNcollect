@@ -47,6 +47,7 @@ class Shop
     public function __construct()
     {
         $this->stocks = new ArrayCollection();
+        $this->product = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -136,4 +137,5 @@ class Shop
     {
         return $this->name;
     }
+
 }
