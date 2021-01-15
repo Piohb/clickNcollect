@@ -1,13 +1,17 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
 {% block title %}Edit Stock{% endblock %}
 
 {% block body %}
-    <h1>Edit Stock</h1>
 
-    {{ include('stock/_form.html.twig', {'button_label': 'Update'}) }}
+    {% embed 'admin/title.html.twig' %}
+        {% block sectiontitle %}
+            <h2 class="mt-4">Edit Stock</h2>
+            <a href="{{ path('stock_index') }}" class="btn btn-secondary">back to list</a>
+        {% endblock %}
+    {% endembed %}
 
-    <a href="{{ path('stock_index') }}">back to list</a>
+    {{ include('admin/stock/_form.html.twig', {'button_label': 'Update'}) }}
 
-    {{ include('stock/_delete_form.html.twig') }}
+    {{ include('admin/stock/_delete_form.html.twig') }}
 {% endblock %}

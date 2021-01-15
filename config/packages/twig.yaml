@@ -3,5 +3,5 @@ twig:
     form_themes: ['bootstrap_4_layout.html.twig']
 
     globals:
-      category: '@App\Repository\CategoryRepository'
-      shop: '@App\Repository\ShopRepository'
+      categoryrepo: '@App\Repository\CategoryRepository'
+      shoprepo: '@App\Repository\ShopRepository'

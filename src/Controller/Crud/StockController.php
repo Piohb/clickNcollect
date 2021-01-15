@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/stock")
+ * @Route("/admin/stock")
  */
 class StockController extends AbstractController
 {
@@ -20,7 +20,7 @@ class StockController extends AbstractController
      */
     public function index(StockRepository $stockRepository): Response
     {
-        return $this->render('stock/index.html.twig', [
+        return $this->render('admin/stock/index.html.twig', [
             'stocks' => $stockRepository->findAll(),
         ]);
     }
@@ -42,7 +42,7 @@ class StockController extends AbstractController
             return $this->redirectToRoute('stock_index');
         }
 
-        return $this->render('stock/new.html.twig', [
+        return $this->render('admin/stock/new.html.twig', [
             'stock' => $stock,
             'form' => $form->createView(),
         ]);
@@ -53,7 +53,7 @@ class StockController extends AbstractController
      */
     public function show(Stock $stock): Response
     {
-        return $this->render('stock/show.html.twig', [
+        return $this->render('admin/stock/show.html.twig', [
             'stock' => $stock,
         ]);
     }
@@ -72,7 +72,7 @@ class StockController extends AbstractController
             return $this->redirectToRoute('stock_index');
         }
 
-        return $this->render('stock/edit.html.twig', [
+        return $this->render('admin/stock/edit.html.twig', [
             'stock' => $stock,
             'form' => $form->createView(),
         ]);

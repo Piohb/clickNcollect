@@ -17,6 +17,12 @@
             <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         {% endblock %}
 
+        <style>
+            .nav-link {
+                color: black;
+            }
+        </style>
+
         <!-- JS LINK -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -51,6 +57,13 @@
                                     <i class="fas fa-table"></i>
                                 </div>
                                 Articles
+                            </a>
+
+                            <a class="nav-link" href="{{ path('stock_index') }}">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-table"></i>
+                                </div>
+                                Stock
                             </a>
 
                             <a class="nav-link" href="{{ path('category_index') }}">

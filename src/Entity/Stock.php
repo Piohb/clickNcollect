@@ -42,7 +42,7 @@ class Stock
     /**
      * @ORM\Column(type="boolean")
      */
-    private $sales;
+    private $sales = false;
 
     public function getId(): ?int
     {

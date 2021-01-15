@@ -131,8 +131,8 @@
                         <span>Nos Magasins</span>
                     </div>
                     <ul>
-                        {% for shop in shop.findAll %}
-                            <li><a href="{{ path('shop') }}">{{ shop.name }}</a></li>
+                        {% for shop in shoprepo.findAll %}
+                            <li><a href="{{ path('shop', {id: shop.id}) }}">{{ shop.name }}</a></li>
                         {% endfor %}
                     </ul>
                 </div>

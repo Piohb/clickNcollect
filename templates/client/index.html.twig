@@ -9,7 +9,7 @@
         <div class="row">
             <div class="categories__slider owl-carousel">
 
-                {% for category in category.findAll %}
+                {% for category in categoryrepo.findAll %}
                     <div class="col-lg-3">
                         <div class="categories__item set-bg" data-setbg="{{ asset('client/img/categories/cat-1.jpg') }}">
                             <h5><a href="{{ path('product-search') }}">{{ category.name }}</a></h5>
@@ -34,7 +34,7 @@
                     <ul>
                         <li class="active" data-filter="*">All</li>
 
-                        {% for category in category.findAll %}
+                        {% for category in categoryrepo.findAll %}
                             <li data-filter=".{{ category.name }}">{{ category.name }}</li>
                         {% endfor %}
 
