@@ -53,11 +53,10 @@ class ClientController extends AbstractController
      */
     public function product($id, ProductRepository $productRepository): Response
     {
+        $product = $productRepository->find($id);
+
         return $this->render('client/product.html.twig', [
-            'controller_name' => 'ProductController',
-            'home' => false,
-            'banner' => true,
-            'h2' => 'Product'
+            'product' => $product
         ]);
     }
 
