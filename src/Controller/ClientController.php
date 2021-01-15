@@ -5,18 +5,20 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\ProductRepository;
 
 class ClientController extends AbstractController
 {
     /**
      * @Route("/", name="home")
      */
-    public function index(): Response
+    public function index(ProductRepository $productRepository): Response
     {
+
+        $products = $productRepository->findAll();
+
         return $this->render('client/index.html.twig', [
-            'controller_name' => 'IndexController',
-            'home' => true,
-            'banner' => false
+            'products' => $products
         ]);
     }
 
@@ -47,9 +49,9 @@ class ClientController extends AbstractController
     }
 
     /**
-     * @Route("/product", name="product")
+     * @Route("/product/{id}", name="product")
      */
-    public function product(): Response
+    public function product($id, ProductRepository $productRepository): Response
     {
         return $this->render('client/product.html.twig', [
             'controller_name' => 'ProductController',

@@ -1,3 +1,9 @@
+{% if app.request.uri == '127.0.0.1' %}
+    {% set banner = false %}
+{% else %}
+    {% set banner = true %}
+{% endif %}
+
 <!-- Page Preloder -->
 <div id="preloder">
     <div class="loader"></div>
@@ -11,10 +17,13 @@
     </div>
     <div class="humberger__menu__cart">
         <ul>
-            <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
             <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
         </ul>
-        <div class="header__cart__price">item: <span>$150.00</span></div>
+        <div class="header__cart__price">
+            {% if app.user %}
+                    <a href="{{ path('app_logout') }}"><i class="fa fa-user-alt-slash"></i></a>
+            {% endif %}
+        </div>
     </div>
     <div class="humberger__menu__widget">
         <div class="header__top__right__language">
@@ -92,10 +101,13 @@
             <div class="col-lg-3">
                 <div class="header__cart">
                     <ul>
-                        <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                        <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                        <li><a href="#"><i class="fa fa-shopping-bag"></i></a></li>
                     </ul>
-                    <div class="header__cart__price">item: <span>$150.00</span></div>
+                    <div class="header__cart__price">
+                        {% if app.user %}
+                            <a href="{{ path('app_logout') }}"><i class="fa fa-user-times" style="color:black"></i></a>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
@@ -107,7 +119,7 @@
 <!-- Header Section End -->
 
 <!-- Hero Section Begin -->
-<section class="hero">
+<section class="hero {% if banner %}hero-normal{% endif %}">
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
@@ -117,12 +129,9 @@
                         <span>Nos Magasins</span>
                     </div>
                     <ul>
-                        <li><a href="{{ path('shop') }}">Magasin 1</a></li>
-                        <li><a href="{{ path('shop') }}">Magasin 2</a></li>
-                        <li><a href="{{ path('shop') }}">Magasin 3</a></li>
-                        <li><a href="{{ path('shop') }}">Magasin 4</a></li>
-                        <li><a href="{{ path('shop') }}">Magasin 5</a></li>
-                        <li><a href="{{ path('shop') }}">Magasin 6</a></li>
+                        {% for shop in shop.findAll %}
+                            <li><a href="{{ path('shop') }}">{{ shop.name }}</a></li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>
@@ -133,6 +142,8 @@
                             <div class="hero__search__categories">
                                 All Categories
                                 <span class="arrow_carrot-down"></span>
+
+                                {#<option value="">test</option>#}
                             </div>
                             <input type="text" placeholder="What do yo u need?">
                             <button type="submit" class="site-btn">SEARCH</button>
@@ -140,7 +151,7 @@
                     </div>
                 </div>
 
-                {% if home %}
+                {% if banner is same as(false) %}
                     <div class="hero__item set-bg" data-setbg="{{ asset('client/img/hero/banner.jpg') }}">
                         <div class="hero__text">
                             <span>FRUIT FRESH</span>
@@ -160,11 +171,10 @@
 {% if banner %}
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg" data-setbg="{{ asset('client/img/breadcrumb.jpg') }}">
-    <div class="container">
+    {#<div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="breadcrumb__text">
-                    <h2>{% block h2 %}Welcome{% endblock %}</h2>
                     <div class="breadcrumb__option">
                         <a href="./index.html">Home</a>
                         <a href="./index.html">Vegetables</a>
@@ -173,7 +183,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>#}
 </section>
 <!-- Breadcrumb Section End -->
 {% endif %}

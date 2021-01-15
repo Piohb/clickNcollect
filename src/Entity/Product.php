@@ -19,6 +19,7 @@ class Product
      */
     private $id;
 
+
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -40,13 +41,10 @@ class Product
      */
     private $stocks;
 
-    public $n;
-
-    public $price;
-
     public function __construct()
     {
         $this->stocks = new ArrayCollection();
+        $this->shop = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -98,13 +96,11 @@ class Product
         return $this->stocks;
     }
 
-    public function addStock(Stock $stock, $price, $n): self
+    public function addStock(Stock $stock): self
     {
         if (!$this->stocks->contains($stock)) {
             $this->stocks[] = $stock;
             $stock->setProduct($this);
-            $stock->setStock($n);
-            $stock->setPrice($price);
         }
 
         return $this;
@@ -122,4 +118,8 @@ class Product
         return $this;
     }
 
+    public function __toString()
+    {
+        return $this->name;
+    }
 }

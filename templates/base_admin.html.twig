@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- META SET -->
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+        <!-- TITLE -->
+        <title>{% block title %}Admin{% endblock %}</title>
+
+        <!-- CSS LINK -->
+        {% block stylesheets %}
+            <link href="{{ asset('admin/css/styles.css') }}" rel="stylesheet" />
+            <link rel="stylesheet" href="{{ asset('admin/css/text.css') }}">
+            <link rel="stylesheet" href="{{ asset('admin/css/main.css') }}">
+            <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+        {% endblock %}
+
+        <!-- JS LINK -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    </head>
+    <body style="background-color: #eeeeee; color: black;">
+
+        <nav class="navbar navbar-expand navbar-dark" style="background-color: #dddddd">
+            <a class="navbar-brand" href="{{ path('home') }}">
+                <img src="{{ asset('client/img/logo.png') }}" alt="logo">
+            </a>
+            <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle"><i class="fas fa-bars" style="color: black"></i></button>
+        </nav>
+
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion" style="background-color: #cccccc" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+
+                            <a class="nav-link" href="{{ path('admin') }}">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-grip-vertical"></i>
+                                </div>
+                                MENU
+                            </a>
+
+                            <div class="sb-sidenav-menu-heading">BOUTIQUE</div>
+
+                            <a class="nav-link" href="">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-table"></i>
+                                </div>
+                                Articles
+                            </a>
+
+                            <a class="nav-link" href="">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-table"></i>
+                                </div>
+                                Categories
+                            </a>
+
+                            <a class="nav-link" href="">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-table"></i>
+                                </div>
+                                Magasins
+                            </a>
+
+                            <div class="sb-sidenav-menu-heading">VENTES</div>
+                            <a class="nav-link" href="">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-table"></i>
+                                </div>
+                                Commandes
+                            </a>
+
+                            <a class="nav-link" href="">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-table"></i>
+                                </div>
+                                Clients
+                            </a>
+                        </div>
+                    </div>
+
+                </nav>
+            </div>
+
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid">
+
+        {% block body %}{% endblock %}
+
+                    </div>
+                </main>
+            </div>
+        </div>
+
+        {% block javascripts %}
+            <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+            <script src="{{ asset('admin/js/scripts.js') }}"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+            <script src="{{ asset('admin/assets/demo/chart-area-demo.js') }}"></script>
+            <script src="{{ asset('admin/assets/demo/chart-bar-demo.js') }}"></script>
+            <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+            <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+            <script src="{{ asset('admin/assets/demo/datatables-demo.js') }}"></script>
+        {% endblock %}
+
+        <script>
+            $(document).ready(function() {
+                const leftElem = $(".left-content").children();
+                const rightElem = $(".right-content").children();
+
+                let leftActive = -1;
+                leftElem.each(function(index) {
+                    if ($(this).hasClass("active")) {
+                        leftActive = index;
+                    }
+                });
+                let rightActive = -1;
+                rightElem.each(function(index) {
+                    if ($(this).hasClass("active")) {
+                        rightActive = index;
+                    }
+                });
+
+                const btnNext = $("#next");
+                const btnPrev = $("#prev");
+
+                function clickNext() {
+                    /*$(".left-content > .content ").css("transform-origin", "top center");
+                    $(".left-content > .content.active ").css(
+                        "transform-origin",
+                        "bottom center"
+                    );
+                    $(".right-content > .content ").css("transform-origin", "bottom center");
+                    $(".right-content > .content.active ").css(
+                        "transform-origin",
+                        "top center"
+                    );*/
+                    const tempElemL = leftElem.toArray();
+                    const tempElemR = rightElem.toArray();
+                    tempElemL[leftActive].classList.remove("active");
+                    tempElemR[rightActive].classList.remove("active");
+                    leftActive = leftActive + 1 >= tempElemL.length ? 0 : leftActive + 1;
+                    rightActive = rightActive + 1 >= tempElemR.length ? 0 : rightActive + 1;
+                    tempElemL[leftActive].classList.add("active");
+                    tempElemR[rightActive].classList.add("active");
+                }
+                function clickPrev() {
+                    /*$(".left-content > .content ").css("transform-origin", "bottom center");
+                    $(".left-content > .content.active ").css("transform-origin", "top center");
+                    $(".right-content > .content ").css("transform-origin", "top center");
+                    $(".right-content > .content.active ").css(
+                        "transform-origin",
+                        "bottom center"
+                    );*/
+                    const tempElemL = leftElem.toArray();
+                    const tempElemR = rightElem.toArray();
+                    tempElemL[leftActive].classList.remove("active");
+                    tempElemR[rightActive].classList.remove("active");
+                    leftActive = leftActive - 1 < 0 ? tempElemL.length - 1 : leftActive - 1;
+                    rightActive = rightActive - 1 < 0 ? tempElemR.length - 1 : rightActive - 1;
+                    tempElemL[leftActive].classList.add("active");
+                    tempElemR[rightActive].classList.add("active");
+                }
+
+                btnNext.click(function() {
+                    clickNext();
+
+                });
+                btnPrev.click(function() {
+                    clickPrev();
+
+                });
+            });
+        </script>
+    </body>
+</html>

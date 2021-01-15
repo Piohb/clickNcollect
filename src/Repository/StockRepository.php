@@ -12,7 +12,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Stock[]    findAll()
  * @method Stock[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class StocksRepository extends ServiceEntityRepository
+class StockRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {

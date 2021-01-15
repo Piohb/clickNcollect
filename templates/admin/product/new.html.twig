@@ -1,0 +1,16 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}New Product{% endblock %}
+
+{% block body %}
+
+    {% embed 'admin/title.html.twig' %}
+        {% block sectiontitle %}
+            <h2 class="mt-4">Create new Product</h2>
+            <a href="{{ path('product_index') }}" class="btn btn-secondary">back to list</a>
+        {% endblock %}
+    {% endembed %}
+
+    {{ include('admin/product/_form.html.twig') }}
+
+{% endblock %}
